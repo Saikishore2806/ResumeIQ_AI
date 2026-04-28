@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Analysis Result</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: auto;
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 38px;
+            color: #0f172a;
+            margin-bottom: 35px;
+        }
+
+        .score-box {
+            background: linear-gradient(135deg, #eff6ff, #dbeafe);
+            padding: 28px;
+            border-radius: 20px;
+            margin-bottom: 35px;
+        }
+
+        .score-box h2 {
+            color: #1d4ed8;
+            margin-bottom: 15px;
+            font-size: 30px;
+        }
+
+        .score-box p {
+            font-size: 17px;
+            margin-bottom: 8px;
+            color: #1e293b;
+        }
+
+        .progress-wrapper {
+            margin-top: 20px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #334155;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 18px;
+            background: #dbeafe;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+    height: 100%;
+    background: linear-gradient(to right, #2563eb, #1d4ed8);
+    border-radius: 20px;
+}
+
+        h2.section-title {
+            color: #2563eb;
+            margin-top: 28px;
+            margin-bottom: 14px;
+            font-size: 28px;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+            font-size: 17px;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #f1f5f9;
+            padding: 6px 12px;
+            border-radius: 12px;
+            margin: 4px;
+            font-size: 14px;
+        }
+
+        .back-btn {
+            display: block;
+            width: 100%;
+            margin-top: 35px;
+            text-align: center;
+            padding: 16px;
+            background: linear-gradient(to right, #2563eb, #1d4ed8);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 14px;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.18);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px;
+            }
+
+            h1 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Resume Analysis Result</h1>
+
+    <div class="score-box">
+        <h2>Final Resume Score: {{ score_data["Final Resume Score"] }}/100</h2>
+        <p><strong>Target Role:</strong> {{ score_data["Target Role"] }}</p>
+        <p><strong>ATS Score:</strong> {{ score_data["ATS Score"] }}/10</p>
+
+        <p>
+            <strong>Resume Status:</strong>
+            {% if score_data["Final Resume Score"] >= 85 %}
+                ★★★★★ Excellent Resume
+            {% elif score_data["Final Resume Score"] >= 70 %}
+                ★★★★ Good Resume
+            {% elif score_data["Final Resume Score"] >= 55 %}
+                ★★★ Average Resume
+            {% else %}
+                ★★ Needs Improvement
+            {% endif %}
+        </p>
+
+        <div class="progress-wrapper">
+            <div class="progress-label">
+                <span>Resume Strength</span>
+                <span>{{ score_data["Final Resume Score"] }}%</span>
+            </div>
+            <div class="progress-bar">
+                <div
+           class="progress-fill"
+           style="width: {{ score_data['Final Resume Score'] }}%;"
+                 ></div>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="section-title">Score Breakdown</h2>
+
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:16px; margin-bottom:30px;">
+        <div style="background:#f8fafc; padding:18px; border-radius:16px; border:1px solid #e2e8f0;">
+            <h3 style="font-size:16px; color:#2563eb; margin-bottom:8px;">Skills Score</h3>
+            <p style="font-size:22px; font-weight:600;">{{ score_data["Skills Score"] }}/50</p>
+        </div>
+
+        <div style="background:#f8fafc; padding:18px; border-radius:16px; border:1px solid #e2e8f0;">
+            <h3 style="font-size:16px; color:#2563eb; margin-bottom:8px;">Education</h3>
+            <p style="font-size:22px; font-weight:600;">{{ score_data["Education Score"] }}/15</p>
+        </div>
+
+        <div style="background:#f8fafc; padding:18px; border-radius:16px; border:1px solid #e2e8f0;">
+            <h3 style="font-size:16px; color:#2563eb; margin-bottom:8px;">Experience</h3>
+            <p style="font-size:22px; font-weight:600;">{{ score_data["Experience Score"] }}/15</p>
+        </div>
+
+        <div style="background:#f8fafc; padding:18px; border-radius:16px; border:1px solid #e2e8f0;">
+            <h3 style="font-size:16px; color:#2563eb; margin-bottom:8px;">ATS Score</h3>
+            <p style="font-size:22px; font-weight:600;">{{ score_data["ATS Score"] }}/10</p>
+        </div>
+
+        <div style="background:#f8fafc; padding:18px; border-radius:16px; border:1px solid #e2e8f0;">
+            <h3 style="font-size:16px; color:#2563eb; margin-bottom:8px;">Resume Length</h3>
+            <p style="font-size:22px; font-weight:600;">{{ score_data["Length Score"] }}/10</p>
+        </div>
+    </div>
+
+    <h2 class="section-title">Matched Skills</h2>
+    <ul>
+        {% for skill in score_data["Matched Skills"] %}
+            <li>✔ {{ skill }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2 class="section-title">Missing Skills</h2>
+    <ul>
+        {% for skill in score_data["Missing Skills"] %}
+            <li>✘ {{ skill }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2 class="section-title">Feedback & Suggestions</h2>
+    <ul>
+        {% for item in feedback_data %}
+            <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+
+    <a href="/download-report/" class="back-btn">Download Resume Analysis Report (PDF)</a>
+
+    <a href="/" class="back-btn" style="margin-top:15px; background: linear-gradient(to right, #0f172a, #1e293b);">Analyze Another Resume</a>
+
+</div>
+
+</body>
+</html>

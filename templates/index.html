@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResumeIQ AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0f172a, #1e3a8a, #2563eb);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .left-panel {
+            background: linear-gradient(160deg, #1d4ed8, #2563eb);
+            color: white;
+            padding: 50px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .brand {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            line-height: 1.7;
+            opacity: 0.95;
+            margin-bottom: 30px;
+        }
+
+        .feature-box {
+            background: rgba(255,255,255,0.12);
+            padding: 18px;
+            border-radius: 16px;
+            margin-bottom: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .feature-box h3 {
+            font-size: 16px;
+            margin-bottom: 6px;
+        }
+
+        .feature-box p {
+            font-size: 14px;
+            opacity: 0.95;
+        }
+
+        .right-panel {
+            padding: 50px 40px;
+            background: #ffffff;
+        }
+
+        .right-panel h1 {
+            font-size: 30px;
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+
+        .right-panel p {
+            color: #64748b;
+            margin-bottom: 30px;
+            font-size: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #1e293b;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #dbeafe;
+            border-radius: 12px;
+            font-size: 15px;
+            background: #f8fafc;
+            transition: 0.3s;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: #2563eb;
+            background: #ffffff;
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.08);
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 14px;
+            background: linear-gradient(to right, #2563eb, #1d4ed8);
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(37, 99, 235, 0.25);
+        }
+
+        .footer-text {
+            text-align: center;
+            margin-top: 18px;
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .left-panel,
+            .right-panel {
+                padding: 35px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="left-panel">
+        <div class="brand">ResumeIQ AI</div>
+        <div class="subtitle">
+            Intelligent Resume Analyzer powered by smart ATS scoring,
+            role-based skill matching, and professional improvement suggestions.
+        </div>
+
+        <div class="feature-box">
+            <h3>ATS Score Analysis</h3>
+            <p>Evaluate resume quality based on recruiter-friendly standards.</p>
+        </div>
+
+        <div class="feature-box">
+            <h3>Role-Based Matching</h3>
+            <p>Compare your resume with industry-required skills for your target role.</p>
+        </div>
+
+        <div class="feature-box">
+            <h3>Improvement Suggestions</h3>
+            <p>Get actionable recommendations to improve recruiter visibility.</p>
+        </div>
+    </div>
+
+    <div class="right-panel">
+        <h1>Upload Your Resume</h1>
+        <p>Get instant analysis for Data Scientist, Frontend, Backend, and ML roles.</p>
+
+        <form action="/upload-resume/" method="post" enctype="multipart/form-data">
+
+            <div class="form-group">
+                <label>Select Resume</label>
+                <input type="file" name="file" required>
+            </div>
+
+            <div class="form-group">
+                <label>Target Role</label>
+                <select name="target_role" required>
+                    <option value="">Choose your target role</option>
+                    <option value="data scientist">Data Scientist</option>
+                    <option value="frontend developer">Frontend Developer</option>
+                    <option value="backend developer">Backend Developer</option>
+                    <option value="ml engineer">ML Engineer</option>
+                </select>
+            </div>
+
+            <button type="submit">Analyze Resume</button>
+
+            
+
+        </form>
+    </div>
+
+</div>
+
+</body>
+</html>
